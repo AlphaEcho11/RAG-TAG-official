@@ -1,0 +1,8 @@
+on:
+  # IMPORTANT: 'push' must be indented with two spaces
+  push:
+    # 'branches' must be indented with four spaces total
+    branches: [ master, main ]
+  
+  # 'workflow_dispatch' must have the same indentation as 'push' (two spaces)
+  workflow_dispatch:
