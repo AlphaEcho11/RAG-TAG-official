@@ -1,5 +1,5 @@
 # RAG-TAG-official
-A multi-layered memory agent using a RAG (Retrieval-Augmented Generation) architecture.
+A multi-layered memory agent using a RAG(Retrieval-Augmented Generation)-TAG(Thought-time-Augmented Generation) architecture.
 
 ## Features
 - Modular CORE system for query analysis and contextual understanding.
