@@ -1,0 +1,307 @@
+2025-08-19 14:58:47,454 - INFO - Huey consumer started with 1 thread, PID 6876 at 2025-08-19 19:58:47.454179
+2025-08-19 14:58:47,454 - INFO - Scheduler runs every 1 second(s).
+2025-08-19 14:58:47,454 - INFO - Periodic tasks are enabled.
+2025-08-19 14:58:47,454 - INFO - The following commands are available:
++ curator.tasks.run_periodic_pruning
++ curator.tasks.run_weekly_synthesis
+2025-08-19 14:58:47,457 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: cb9d80d4-1a13-411a-a1fd-2329b8dadb83.
+2025-08-19 14:58:47,472 - INFO - Executing curator.tasks.run_periodic_pruning: cb9d80d4-1a13-411a-a1fd-2329b8dadb83
+2025-08-19 14:58:52,032 - INFO - Use pytorch device_name: cpu
+2025-08-19 14:58:52,032 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 14:58:53,198 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-08-19 14:58:53,284 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 14:58:53,339 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 14:58:53,340 - INFO - curator.tasks.run_periodic_pruning: cb9d80d4-1a13-411a-a1fd-2329b8dadb83 executed in 5.868s
+2025-08-19 14:59:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: b66cb683-62b2-47ae-bbd5-08801827b120.
+2025-08-19 14:59:51,064 - INFO - Executing curator.tasks.run_periodic_pruning: b66cb683-62b2-47ae-bbd5-08801827b120
+2025-08-19 14:59:51,065 - INFO - Use pytorch device_name: cpu
+2025-08-19 14:59:51,065 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 14:59:51,887 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 14:59:51,887 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 14:59:51,887 - INFO - curator.tasks.run_periodic_pruning: b66cb683-62b2-47ae-bbd5-08801827b120 executed in 0.823s
+2025-08-19 15:00:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: ef8ce509-283d-4885-bc84-00c4fe5baee7.
+2025-08-19 15:00:49,611 - INFO - Executing curator.tasks.run_periodic_pruning: ef8ce509-283d-4885-bc84-00c4fe5baee7
+2025-08-19 15:00:49,613 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:00:49,613 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:00:50,398 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:00:50,399 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:00:50,399 - INFO - curator.tasks.run_periodic_pruning: ef8ce509-283d-4885-bc84-00c4fe5baee7 executed in 0.788s
+2025-08-19 15:01:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: eea93f9f-3335-4dd3-b35f-f4d9455b6a3c.
+2025-08-19 15:01:48,121 - INFO - Executing curator.tasks.run_periodic_pruning: eea93f9f-3335-4dd3-b35f-f4d9455b6a3c
+2025-08-19 15:01:48,122 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:01:48,122 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:01:48,919 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:01:48,920 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:01:48,920 - INFO - curator.tasks.run_periodic_pruning: eea93f9f-3335-4dd3-b35f-f4d9455b6a3c executed in 0.799s
+2025-08-19 15:02:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: fe50e3c0-ef24-4ca9-b09f-e32a5e69c81e.
+2025-08-19 15:02:55,398 - INFO - Executing curator.tasks.run_periodic_pruning: fe50e3c0-ef24-4ca9-b09f-e32a5e69c81e
+2025-08-19 15:02:55,399 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:02:55,400 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:02:56,195 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:02:56,196 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:02:56,196 - INFO - curator.tasks.run_periodic_pruning: fe50e3c0-ef24-4ca9-b09f-e32a5e69c81e executed in 0.798s
+2025-08-19 15:03:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 536d7070-5c15-4c92-a1d0-f445ce06f167.
+2025-08-19 15:03:53,919 - INFO - Executing curator.tasks.run_periodic_pruning: 536d7070-5c15-4c92-a1d0-f445ce06f167
+2025-08-19 15:03:53,920 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:03:53,920 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:03:54,696 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:03:54,697 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:03:54,697 - INFO - curator.tasks.run_periodic_pruning: 536d7070-5c15-4c92-a1d0-f445ce06f167 executed in 0.778s
+2025-08-19 15:04:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: f7886e4a-2c42-4764-b39e-2064cea47800.
+2025-08-19 15:04:52,416 - INFO - Executing curator.tasks.run_periodic_pruning: f7886e4a-2c42-4764-b39e-2064cea47800
+2025-08-19 15:04:52,418 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:04:52,418 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:04:53,243 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:04:53,243 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:04:53,243 - INFO - curator.tasks.run_periodic_pruning: f7886e4a-2c42-4764-b39e-2064cea47800 executed in 0.827s
+2025-08-19 15:05:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: b61c1cfa-5d1f-463d-a927-3f82a8523dd7.
+2025-08-19 15:05:50,964 - INFO - Executing curator.tasks.run_periodic_pruning: b61c1cfa-5d1f-463d-a927-3f82a8523dd7
+2025-08-19 15:05:50,966 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:05:50,966 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:05:51,973 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:05:51,973 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:05:51,973 - INFO - curator.tasks.run_periodic_pruning: b61c1cfa-5d1f-463d-a927-3f82a8523dd7 executed in 1.009s
+2025-08-19 15:06:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 0c067eeb-8c70-4dcd-9003-d08e2b383a59.
+2025-08-19 15:06:49,694 - INFO - Executing curator.tasks.run_periodic_pruning: 0c067eeb-8c70-4dcd-9003-d08e2b383a59
+2025-08-19 15:06:49,695 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:06:49,695 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:06:50,496 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:06:50,496 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:06:50,496 - INFO - curator.tasks.run_periodic_pruning: 0c067eeb-8c70-4dcd-9003-d08e2b383a59 executed in 0.802s
+2025-08-19 15:07:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 2db32d52-894d-4df1-84c7-989b49431c0a.
+2025-08-19 15:07:48,216 - INFO - Executing curator.tasks.run_periodic_pruning: 2db32d52-894d-4df1-84c7-989b49431c0a
+2025-08-19 15:07:48,218 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:07:48,218 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:07:49,077 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:07:49,078 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:07:49,078 - INFO - curator.tasks.run_periodic_pruning: 2db32d52-894d-4df1-84c7-989b49431c0a executed in 0.862s
+2025-08-19 15:08:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 43054884-6834-4cfa-9b43-b91fbd193f82.
+2025-08-19 15:08:55,556 - INFO - Executing curator.tasks.run_periodic_pruning: 43054884-6834-4cfa-9b43-b91fbd193f82
+2025-08-19 15:08:55,558 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:08:55,558 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:08:56,358 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:08:56,359 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:08:56,359 - INFO - curator.tasks.run_periodic_pruning: 43054884-6834-4cfa-9b43-b91fbd193f82 executed in 0.802s
+2025-08-19 15:09:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: a43f98cf-73d0-40b2-bea2-db5fcd079276.
+2025-08-19 15:09:54,079 - INFO - Executing curator.tasks.run_periodic_pruning: a43f98cf-73d0-40b2-bea2-db5fcd079276
+2025-08-19 15:09:54,081 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:09:54,081 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:09:54,878 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:09:54,879 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:09:54,879 - INFO - curator.tasks.run_periodic_pruning: a43f98cf-73d0-40b2-bea2-db5fcd079276 executed in 0.800s
+2025-08-19 15:10:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: eb626c0f-a977-4770-81b0-27cd6bfa0132.
+2025-08-19 15:10:52,601 - INFO - Executing curator.tasks.run_periodic_pruning: eb626c0f-a977-4770-81b0-27cd6bfa0132
+2025-08-19 15:10:52,603 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:10:52,603 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:10:53,659 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:10:53,660 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:10:53,660 - INFO - curator.tasks.run_periodic_pruning: eb626c0f-a977-4770-81b0-27cd6bfa0132 executed in 1.058s
+2025-08-19 15:11:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: abd84e95-e6a4-470c-b7e5-88e7b432b6fc.
+2025-08-19 15:11:51,381 - INFO - Executing curator.tasks.run_periodic_pruning: abd84e95-e6a4-470c-b7e5-88e7b432b6fc
+2025-08-19 15:11:51,383 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:11:51,383 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:11:52,232 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:11:52,233 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:11:52,233 - INFO - curator.tasks.run_periodic_pruning: abd84e95-e6a4-470c-b7e5-88e7b432b6fc executed in 0.851s
+2025-08-19 15:12:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 65f798f0-4b4a-4c7e-bb26-4153e1f2c3b4.
+2025-08-19 15:12:49,954 - INFO - Executing curator.tasks.run_periodic_pruning: 65f798f0-4b4a-4c7e-bb26-4153e1f2c3b4
+2025-08-19 15:12:49,956 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:12:49,956 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:12:50,786 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:12:50,787 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:12:50,787 - INFO - curator.tasks.run_periodic_pruning: 65f798f0-4b4a-4c7e-bb26-4153e1f2c3b4 executed in 0.833s
+2025-08-19 15:13:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 95884903-c7ca-4ca5-b8a1-c0428a8b3c8b.
+2025-08-19 15:13:48,505 - INFO - Executing curator.tasks.run_periodic_pruning: 95884903-c7ca-4ca5-b8a1-c0428a8b3c8b
+2025-08-19 15:13:48,507 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:13:48,507 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:13:49,366 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:13:49,367 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:13:49,367 - INFO - curator.tasks.run_periodic_pruning: 95884903-c7ca-4ca5-b8a1-c0428a8b3c8b executed in 0.862s
+2025-08-19 15:14:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 3ac37814-24a0-4eec-9a2a-5a30ad6ee5ba.
+2025-08-19 15:14:55,845 - INFO - Executing curator.tasks.run_periodic_pruning: 3ac37814-24a0-4eec-9a2a-5a30ad6ee5ba
+2025-08-19 15:14:55,847 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:14:55,847 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:14:56,670 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:14:56,670 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:14:56,670 - INFO - curator.tasks.run_periodic_pruning: 3ac37814-24a0-4eec-9a2a-5a30ad6ee5ba executed in 0.825s
+2025-08-19 15:15:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 4079a657-14bb-4e16-901b-13daa3d4b78d.
+2025-08-19 15:15:54,392 - INFO - Executing curator.tasks.run_periodic_pruning: 4079a657-14bb-4e16-901b-13daa3d4b78d
+2025-08-19 15:15:54,394 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:15:54,394 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:15:55,267 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:15:55,268 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:15:55,268 - INFO - curator.tasks.run_periodic_pruning: 4079a657-14bb-4e16-901b-13daa3d4b78d executed in 0.875s
+2025-08-19 15:16:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 7e239c53-21ad-4207-8ede-4f1d667bc72b.
+2025-08-19 15:16:52,989 - INFO - Executing curator.tasks.run_periodic_pruning: 7e239c53-21ad-4207-8ede-4f1d667bc72b
+2025-08-19 15:16:52,990 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:16:52,991 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:16:53,759 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:16:53,760 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:16:53,760 - INFO - curator.tasks.run_periodic_pruning: 7e239c53-21ad-4207-8ede-4f1d667bc72b executed in 0.771s
+2025-08-19 15:17:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: c2c2fe7b-f685-42ac-9fab-9a0284952062.
+2025-08-19 15:17:51,480 - INFO - Executing curator.tasks.run_periodic_pruning: c2c2fe7b-f685-42ac-9fab-9a0284952062
+2025-08-19 15:17:51,481 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:17:51,481 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:17:52,263 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:17:52,264 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:17:52,264 - INFO - curator.tasks.run_periodic_pruning: c2c2fe7b-f685-42ac-9fab-9a0284952062 executed in 0.784s
+2025-08-19 15:18:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 80e10bb6-5080-4802-b5d2-747378dc4457.
+2025-08-19 15:18:49,986 - INFO - Executing curator.tasks.run_periodic_pruning: 80e10bb6-5080-4802-b5d2-747378dc4457
+2025-08-19 15:18:49,987 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:18:49,988 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:18:50,772 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:18:50,772 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:18:50,772 - INFO - curator.tasks.run_periodic_pruning: 80e10bb6-5080-4802-b5d2-747378dc4457 executed in 0.786s
+2025-08-19 15:19:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 1cab01d4-8306-46b8-86ef-ef8656a9532b.
+2025-08-19 15:19:48,492 - INFO - Executing curator.tasks.run_periodic_pruning: 1cab01d4-8306-46b8-86ef-ef8656a9532b
+2025-08-19 15:19:48,494 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:19:48,494 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:19:49,261 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:19:49,262 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:19:49,262 - INFO - curator.tasks.run_periodic_pruning: 1cab01d4-8306-46b8-86ef-ef8656a9532b executed in 0.770s
+2025-08-19 15:20:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: b6e55dd1-1621-447e-9e88-92df682e1bc7.
+2025-08-19 15:20:55,741 - INFO - Executing curator.tasks.run_periodic_pruning: b6e55dd1-1621-447e-9e88-92df682e1bc7
+2025-08-19 15:20:55,742 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:20:55,743 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:20:56,710 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:20:56,711 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:20:56,711 - INFO - curator.tasks.run_periodic_pruning: b6e55dd1-1621-447e-9e88-92df682e1bc7 executed in 0.970s
+2025-08-19 15:21:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: ab0bc385-f0f3-4340-9704-3d0cd8764dde.
+2025-08-19 15:21:54,433 - INFO - Executing curator.tasks.run_periodic_pruning: ab0bc385-f0f3-4340-9704-3d0cd8764dde
+2025-08-19 15:21:54,434 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:21:54,435 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:21:55,210 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:21:55,211 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:21:55,211 - INFO - curator.tasks.run_periodic_pruning: ab0bc385-f0f3-4340-9704-3d0cd8764dde executed in 0.778s
+2025-08-19 15:22:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: a4fa3956-30fd-42dd-818e-a1fe208bf991.
+2025-08-19 15:22:52,932 - INFO - Executing curator.tasks.run_periodic_pruning: a4fa3956-30fd-42dd-818e-a1fe208bf991
+2025-08-19 15:22:52,934 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:22:52,934 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:22:53,767 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:22:53,768 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:22:53,768 - INFO - curator.tasks.run_periodic_pruning: a4fa3956-30fd-42dd-818e-a1fe208bf991 executed in 0.835s
+2025-08-19 15:23:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 158acc89-515d-49dd-abe1-a83024ccd59d.
+2025-08-19 15:23:51,489 - INFO - Executing curator.tasks.run_periodic_pruning: 158acc89-515d-49dd-abe1-a83024ccd59d
+2025-08-19 15:23:51,491 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:23:51,491 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:23:52,541 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:23:52,542 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:23:52,542 - INFO - curator.tasks.run_periodic_pruning: 158acc89-515d-49dd-abe1-a83024ccd59d executed in 1.053s
+2025-08-19 15:24:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 06f5b34c-e716-4159-919c-b0512aecd190.
+2025-08-19 15:24:50,263 - INFO - Executing curator.tasks.run_periodic_pruning: 06f5b34c-e716-4159-919c-b0512aecd190
+2025-08-19 15:24:50,265 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:24:50,265 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:24:51,041 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:24:51,042 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:24:51,042 - INFO - curator.tasks.run_periodic_pruning: 06f5b34c-e716-4159-919c-b0512aecd190 executed in 0.779s
+2025-08-19 15:25:47,454 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 0c283528-6217-4ecc-9579-60040ac70b1c.
+2025-08-19 15:25:48,763 - INFO - Executing curator.tasks.run_periodic_pruning: 0c283528-6217-4ecc-9579-60040ac70b1c
+2025-08-19 15:25:48,764 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:25:48,764 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:25:49,628 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:25:49,629 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:25:49,629 - INFO - curator.tasks.run_periodic_pruning: 0c283528-6217-4ecc-9579-60040ac70b1c executed in 0.866s
+2025-08-19 15:26:47,455 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 7d84ed8b-8315-46d0-9f5d-1b3bd9130b41.
+2025-08-19 15:26:56,106 - INFO - Executing curator.tasks.run_periodic_pruning: 7d84ed8b-8315-46d0-9f5d-1b3bd9130b41
+2025-08-19 15:26:56,108 - INFO - Use pytorch device_name: cpu
+2025-08-19 15:26:56,108 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 15:26:56,891 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 15:26:56,891 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 15:26:56,891 - INFO - curator.tasks.run_periodic_pruning: 7d84ed8b-8315-46d0-9f5d-1b3bd9130b41 executed in 0.785s
+2025-08-19 15:27:17,930 - INFO - Received SIGINT
+2025-08-19 15:27:17,930 - INFO - Shutting down gracefully...
+2025-08-19 16:12:41,448 - INFO - Huey consumer started with 1 thread, PID 39320 at 2025-08-19 21:12:41.448647
+2025-08-19 16:12:41,448 - INFO - Scheduler runs every 1 second(s).
+2025-08-19 16:12:41,449 - INFO - Periodic tasks are enabled.
+2025-08-19 16:12:41,449 - INFO - The following commands are available:
++ curator.tasks.run_periodic_pruning
++ curator.tasks.run_weekly_synthesis
+2025-08-19 16:12:41,451 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: fdbe1970-f8f3-40bf-9acc-c4f304e07e09.
+2025-08-19 16:12:41,457 - INFO - Executing curator.tasks.run_periodic_pruning: fdbe1970-f8f3-40bf-9acc-c4f304e07e09
+2025-08-19 16:12:46,027 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:12:46,027 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:12:47,276 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-08-19 16:12:47,347 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:12:47,389 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:12:47,389 - INFO - curator.tasks.run_periodic_pruning: fdbe1970-f8f3-40bf-9acc-c4f304e07e09 executed in 5.932s
+2025-08-19 16:13:41,448 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: eefd0549-04da-4384-8c20-c46059aa68cd.
+2025-08-19 16:13:45,113 - INFO - Executing curator.tasks.run_periodic_pruning: eefd0549-04da-4384-8c20-c46059aa68cd
+2025-08-19 16:13:45,115 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:13:45,115 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:13:45,945 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:13:45,945 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:13:45,945 - INFO - curator.tasks.run_periodic_pruning: eefd0549-04da-4384-8c20-c46059aa68cd executed in 0.832s
+2025-08-19 16:14:41,448 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 0d8c7e31-4ad9-4d6d-a588-36905843802c.
+2025-08-19 16:14:43,667 - INFO - Executing curator.tasks.run_periodic_pruning: 0d8c7e31-4ad9-4d6d-a588-36905843802c
+2025-08-19 16:14:43,668 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:14:43,668 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:14:44,541 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:14:44,542 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:14:44,542 - INFO - curator.tasks.run_periodic_pruning: 0d8c7e31-4ad9-4d6d-a588-36905843802c executed in 0.875s
+2025-08-19 16:15:41,449 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 2268f8a2-c42a-4de9-87c7-8d3e1f94021e.
+2025-08-19 16:15:42,262 - INFO - Executing curator.tasks.run_periodic_pruning: 2268f8a2-c42a-4de9-87c7-8d3e1f94021e
+2025-08-19 16:15:42,264 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:15:42,264 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:15:43,291 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:15:43,291 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:15:43,292 - INFO - curator.tasks.run_periodic_pruning: 2268f8a2-c42a-4de9-87c7-8d3e1f94021e executed in 1.029s
+2025-08-19 16:16:41,449 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 3b496712-3aa3-4e6f-b9a3-59ea35ea0250.
+2025-08-19 16:16:49,770 - INFO - Executing curator.tasks.run_periodic_pruning: 3b496712-3aa3-4e6f-b9a3-59ea35ea0250
+2025-08-19 16:16:49,771 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:16:49,772 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:16:50,779 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:16:50,780 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:16:50,780 - INFO - curator.tasks.run_periodic_pruning: 3b496712-3aa3-4e6f-b9a3-59ea35ea0250 executed in 1.010s
+2025-08-19 16:17:21,310 - INFO - Received SIGINT
+2025-08-19 16:17:21,311 - INFO - Shutting down gracefully...
+2025-08-19 16:18:18,914 - INFO - Huey consumer started with 1 thread, PID 22596 at 2025-08-19 21:18:18.914518
+2025-08-19 16:18:18,914 - INFO - Scheduler runs every 1 second(s).
+2025-08-19 16:18:18,915 - INFO - Periodic tasks are enabled.
+2025-08-19 16:18:18,915 - INFO - The following commands are available:
++ curator.tasks.run_periodic_pruning
++ curator.tasks.run_weekly_synthesis
+2025-08-19 16:18:18,917 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 3fe89625-110f-4bff-a21a-51d04fafead1.
+2025-08-19 16:18:18,921 - INFO - Executing curator.tasks.run_periodic_pruning: 3fe89625-110f-4bff-a21a-51d04fafead1
+2025-08-19 16:18:23,449 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:18:23,450 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:18:24,731 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-08-19 16:18:24,799 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:18:24,837 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:18:24,837 - INFO - curator.tasks.run_periodic_pruning: 3fe89625-110f-4bff-a21a-51d04fafead1 executed in 5.916s
+2025-08-19 16:19:18,914 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: fc57c47e-d33a-47b6-9f63-e5d0ee61d4de.
+2025-08-19 16:19:22,558 - INFO - Executing curator.tasks.run_periodic_pruning: fc57c47e-d33a-47b6-9f63-e5d0ee61d4de
+2025-08-19 16:19:22,560 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:19:22,560 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:19:23,435 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:19:23,435 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:19:23,435 - INFO - curator.tasks.run_periodic_pruning: fc57c47e-d33a-47b6-9f63-e5d0ee61d4de executed in 0.877s
+2025-08-19 16:20:18,914 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 720f9e68-0e91-494a-b18f-5332a0864608.
+2025-08-19 16:20:21,156 - INFO - Executing curator.tasks.run_periodic_pruning: 720f9e68-0e91-494a-b18f-5332a0864608
+2025-08-19 16:20:21,158 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:20:21,158 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:20:22,246 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:20:22,247 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:20:22,247 - INFO - curator.tasks.run_periodic_pruning: 720f9e68-0e91-494a-b18f-5332a0864608 executed in 1.091s
+2025-08-19 16:21:18,914 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 1b8d235f-3123-4a13-b53b-3b05262e6190.
+2025-08-19 16:21:19,970 - INFO - Executing curator.tasks.run_periodic_pruning: 1b8d235f-3123-4a13-b53b-3b05262e6190
+2025-08-19 16:21:19,972 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:21:19,972 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:21:20,885 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:21:20,886 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:21:20,886 - INFO - curator.tasks.run_periodic_pruning: 1b8d235f-3123-4a13-b53b-3b05262e6190 executed in 0.916s
+2025-08-19 16:22:18,914 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: e215fcaf-b443-4dfc-8c33-abc69b631cfe.
+2025-08-19 16:22:27,367 - INFO - Executing curator.tasks.run_periodic_pruning: e215fcaf-b443-4dfc-8c33-abc69b631cfe
+2025-08-19 16:22:27,368 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:22:27,368 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:22:28,230 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:22:28,231 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:22:28,231 - INFO - curator.tasks.run_periodic_pruning: e215fcaf-b443-4dfc-8c33-abc69b631cfe executed in 0.864s
+2025-08-19 16:23:18,914 - INFO - Enqueueing periodic task curator.tasks.run_periodic_pruning: 7b23c0d6-1415-45f3-ba33-58de142c7e17.
+2025-08-19 16:23:25,952 - INFO - Executing curator.tasks.run_periodic_pruning: 7b23c0d6-1415-45f3-ba33-58de142c7e17
+2025-08-19 16:23:25,954 - INFO - Use pytorch device_name: cpu
+2025-08-19 16:23:25,954 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-19 16:23:26,813 - INFO - --- [Curator] Starting pruning process ---
+2025-08-19 16:23:26,814 - INFO - --- [Curator] No memories to prune. ---
+2025-08-19 16:23:26,814 - INFO - curator.tasks.run_periodic_pruning: 7b23c0d6-1415-45f3-ba33-58de142c7e17 executed in 0.861s
+2025-08-19 16:23:46,997 - INFO - Received SIGINT
+2025-08-19 16:23:46,998 - INFO - Shutting down gracefully...
