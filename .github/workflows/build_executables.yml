@@ -8,7 +8,14 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    # --- NEW: The Build Matrix ---
+    # This tells GitHub to run this job three times, once for each OS.
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    # Use the OS from the matrix for each job run
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Check out repository code
@@ -28,8 +35,25 @@ jobs:
     - name: Build with PyInstaller
       run: pyinstaller --onefile --noconsole --name RAG-TAG-Agent main.py
 
+    # --- NEW: Conditional Artifact Upload ---
+    # We need separate steps to handle the different file names for each OS.
     - name: Upload Windows Executable
+      if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v4
       with:
         name: RAG-TAG-Agent-Windows
         path: dist/RAG-TAG-Agent.exe
+
+    - name: Upload Linux Executable
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v4
+      with:
+        name: RAG-TAG-Agent-Linux
+        path: dist/RAG-TAG-Agent
+
+    - name: Upload macOS Executable
+      if: matrix.os == 'macos-latest'
+      uses: actions/upload-artifact@v4
+      with:
+        name: RAG-TAG-Agent-macOS
+        path: dist/RAG-TAG-Agent
