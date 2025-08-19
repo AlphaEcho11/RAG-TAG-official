@@ -1,8 +1,35 @@
+# .github/workflows/build_executables.yml
+name: Build Application Executables
+
 on:
-  # IMPORTANT: 'push' must be indented with two spaces
   push:
-    # 'branches' must be indented with four spaces total
     branches: [ master, main ]
-  
-  # 'workflow_dispatch' must have the same indentation as 'push' (two spaces)
   workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Build with PyInstaller
+      run: pyinstaller --onefile --noconsole --name RAG-TAG-Agent main.py
+
+    - name: Upload Windows Executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: RAG-TAG-Agent-Windows
+        path: dist/RAG-TAG-Agent.exe
