@@ -95,4 +95,4 @@ with gr.Blocks(theme='default') as demo:
     chatbot.change(fn=update_journal_display, inputs=None, outputs=journal_output)
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(pwa=True)
