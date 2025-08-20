@@ -24,5 +24,5 @@ A multi-layered memory agent using a RAG(Retrieval-Augmented Generation)-TAG(Tho
 I'd like to thank the following people and projects for their support and inspiration in bringing RAG-TAG to life.
 
 * **[O'Hara](https://www.linkedin.com/in/dylan-o-hara-452b63b1/)**: For challenging me to think outside the box _constantly_. 
-* **[oobabooga & timothycarambat](https://github.com/oobabooga/text-generation-webui)(https://github.com/Mintplex-Labs/anything-llm)(**: For their incredible work on not just open source tools, but exploring endless possibilities.
+* **[oobabooga](https://github.com/oobabooga/text-generation-webui) & [timothycarambat](https://github.com/Mintplex-Labs/anything-llm)(**: For their incredible work on not just open source tools, but exploring endless possibilities.
 * **All my family & friends**: that have put up with me burning the candle at both ends - it was never in vain. Here's to you all 🍻
