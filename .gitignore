@@ -1,11 +1,29 @@
-# Python virtual environment
-venv/
-
-# PyInstaller generated folders
-dist/
-build/
-*.spec
-
-# Python cache
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.env
+venv/
+.venv/
+
+# Databases
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+chroma_db/
+chroma_db_prod/
+
+# Logs and Journals
+*.log
+cognitive_journal.json
+
+# Backup Files
+*.old
+ui/BEST-app.py
+
+# IDE / OS specific
+.vscode/
+.idea/
+.DS_Store

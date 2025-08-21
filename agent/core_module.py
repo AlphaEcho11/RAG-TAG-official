@@ -1,21 +1,13 @@
-# core_module.py
+# agent/core_module.py
 import json
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
+from langchain.schema import StrOutputParser
 
-# Initialize the same LLM you use in your agent
-llm = ChatOpenAI(
-    base_url="http://localhost:1234/v1",
-    api_key="lm-studio",
-    model="gemma-3-1b-it-qat",
-    temperature=0.3 
-)
-
-# --- ENHANCED PROMPT ---
-# This prompt is a more rigorous, direct implementation of the official CORE System Prompt.
+# --- UPGRADED CORE PROMPT ---
 core_system_prompt = ChatPromptTemplate.from_template(
 """
-You are an expert system rigorously applying the CORE protocol for every user query. Analyze the user's query and conversation history, then output a structured JSON plan.
+You are an expert system rigorously applying the CORE protocol. Analyze the user's query and history, then output a structured JSON plan for the agent to execute.
 
 **Conversation History:**
 {history}
@@ -24,15 +16,21 @@ You are an expert system rigorously applying the CORE protocol for every user qu
 
 **Your Instructions:**
 
-**A. Situational Awareness & Adaptive Goal Setting:**
-1.  **Acknowledge Limitations:** Based on the query, note any operational constraints. Are you being asked for real-time information you can't access or to perform an action you can't do? [cite: 46]
-2.  **Determine User's Underlying Need:** What is the user's true goal or intent? [cite: 47]
-3.  **Formulate Adaptive Goal:** State the most helpful, achievable goal you can accomplish right now to meet that need within your genuine scope. [cite: 30, 48]
+**Part A: Situational Awareness & Goal Setting:**
+1.  Analyze User's Need: What is the user's true goal?
+2.  Identify Constraints: Are there any operational limitations?
+3.  Formulate Adaptive Goal: State the most helpful, achievable goal.
 
-**B. Focused Execution & Calibrated Response:**
-1.  **Define Achievable Objective(s):** List the concrete steps required to achieve the Adaptive Goal from Part A. [cite: 51]
-2.  **Establish Relevance Hierarchy:** What keywords or concepts are most critical for the search and response? List them in order of importance. [cite: 53]
-3.  **Advise on Transparency:** If you noted any significant limitations in A.1 that will affect the final response, set "articulate_limitations" to true. Otherwise, set it to false. [cite: 57, 59]
+**Part B: Action Recommendation:**
+1.  Recommend a Tool: Based on the user's need, choose the single best tool. The available tools are:
+    - "text_rag": For all text-based questions and information retrieval.
+    - "image_generator": For explicit requests to create or draw an image.
+    - "request_file": Use this if the user's query requires a document, file, or image that has not been provided.
+
+2.  Define Tool Parameters: Specify the necessary parameters for the chosen tool.
+    - For "text_rag", the parameter is the "query".
+    - For "image_generator", it is the "prompt".
+    - For "request_file", the parameter is a "request_message" (a friendly string asking the user for the file).
 
 **Output Format:**
 Provide your analysis as a single, valid JSON object.
@@ -43,24 +41,24 @@ Provide your analysis as a single, valid JSON object.
         "operational_constraints": "...",
         "adaptive_goal": "..."
     }},
-    "focused_execution": {{
-        "achievable_objectives": ["...", "..."],
-        "relevance_hierarchy": ["...", "..."],
-        "articulate_limitations": boolean
+    "recommended_action": {{
+        "tool": "...",
+        "parameters": {{...}}
     }}
 }}
 """
 )
 
-def analyze_context(question: str, history: list) -> dict:
+# --- FUNCTION DEFINITION ---
+def analyze_context(question: str, history: list, llm) -> dict:
     """
     Analyzes the user's query using the enhanced CORE protocol.
     """
     print("\n--- Activating CORE Module (Enhanced Protocol) ---")
     
-    formatted_history = "\n".join([f"User: {h['query']}\nAgent: {h['response']}" for h in history])
+    formatted_history = "\n".join([f"User: {h.get('query', '')}\nAgent: {h.get('response', '')}" for h in history])
     
-    chain = core_system_prompt | llm
+    chain = core_system_prompt | llm | StrOutputParser()
     
     response_text = chain.invoke({
         "question": question,
@@ -68,7 +66,7 @@ def analyze_context(question: str, history: list) -> dict:
     })
     
     try:
-        clean_json_text = response_text.content.strip().replace("```json", "").replace("```", "")
+        clean_json_text = response_text.strip().replace("```json", "").replace("```", "")
         core_analysis = json.loads(clean_json_text)
         print("--- CORE Analysis Complete ---")
         return core_analysis
