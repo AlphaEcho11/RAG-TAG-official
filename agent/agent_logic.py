@@ -2,6 +2,7 @@
 import os, datetime, json, time, uuid, shutil, sys, subprocess
 import logging
 import config
+import json
 
 # --- Setup logging at the top of the file ---
 # This configures a logger that writes to a file.
@@ -16,7 +17,9 @@ logger = logging.getLogger(__name__)
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
+from langchain_anthropic import ChatAnthropic
+from langchain_google_genai import ChatGoogleGenerativeAI
+from .core_module import analyze_contextfrom langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema import StrOutputParser, Document
 from .core_module import analyze_context
@@ -74,9 +77,93 @@ def write_novel_thought_to_vector_memory(vectorstore, query, response, scope):
     vectorstore.add_documents([doc], ids=[doc_id])
     logger.info(f"--- Novel Thought Written to Vector Memory in scope '{scope}'! ---")
 
-# --- Core Agent Logic (Enhanced) ---
-def process_query(vectorstore, question, conversation_history, current_scope="general", llm_model_name="gemma-3-1b-it-qat"):
+# --- The CORE Integrated Agent Logic ---
+def process_query(vectorstore, question, conversation_history, current_scope="general", llm_model_name=config.DEFAULT_MODEL):
     """
+    This function orchestrates the CORE-driven workflow, now including the
+    ability to proactively request files from the user.
+    """
+    # 1. Get model configuration from the provided llm_model_name
+    model_config = config.AVAILABLE_MODELS.get(
+        llm_model_name, config.AVAILABLE_MODELS[config.DEFAULT_MODEL]
+    )
+    
+    # 2. Initialize the correct LLM client
+    if model_config["model_provider"] == "openai":
+        llm = ChatOpenAI(model=model_config["model_name"], api_key=model_config["api_key"])
+    
+    # --- NEW: Add the Google client ---
+    elif model_config["model_provider"] == "google":
+        llm = ChatGoogleGenerativeAI(model=model_config["model_name"], google_api_key=model_config["api_key"])
+        
+    elif model_config["model_provider"] == "anthropic":
+        llm = ChatAnthropic(model=model_config["model_name"], api_key=model_config["api_key"])
+        
+    else: # Default to local
+        llm = ChatOpenAI(
+            model=model_config["model_name"],
+            base_url=model_config.get("base_url"),
+            api_key=model_config.get("api_key")
+        )
+
+    # 3. GET THE PLAN FROM THE CORE MODULE
+    core_plan = analyze_context(question, conversation_history, llm)    """
+    This function is now the orchestrator that follows the plan laid out by the CORE module.
+    """
+    # 1. Initialize the LLM
+    model_details = config.AVAILABLE_MODELS.get(llm_model_name, config.AVAILABLE_MODELS[config.DEFAULT_MODEL])
+    llm = ChatOpenAI(
+        base_url=model_details["base_url"], 
+        api_key=model_details["api_key"], 
+        model=llm_model_name
+    )
+    except Exception as e:
+        # This is our global catch-all for the agent's brain
+        error_message = str(e)
+        print(f"--- [Agent Logic] CRITICAL ERROR: {error_message} ---")
+        
+        # Check for a common API key error signature
+        if "api_key" in error_message.lower():
+            user_facing_error = f"**API Error:** Could not connect to the model. Please check if your API key for **{llm_model_name}** is correct and has sufficient credits."
+        else:
+            user_facing_error = f"**System Error:** An unexpected issue occurred while processing your request. Please check the console logs for details."
+            
+        yield {"type": "ui_message", "content": user_facing_error}
+        
+    # 2. GET THE PLAN FROM THE CORE MODULE
+    core_plan = analyze_context(question, conversation_history)
+
+    if not core_plan or 'recommended_action' not in core_plan:
+        # Fallback in case CORE analysis fails
+        print("--- [Agent Logic] CORE analysis failed. Defaulting to text_rag. ---")
+        yield from process_text_with_rag(vectorstore, question, conversation_history, current_scope, llm_model_name)
+        return
+
+    # 3. EXECUTE THE RECOMMENDED ACTION
+    action = core_plan['recommended_action']
+    tool_to_use = action.get("tool")
+    parameters = action.get("parameters", {})
+
+    print(f"--- [Agent Logic] CORE Plan received. Executing tool: '{tool_to_use}' ---")
+
+    if tool_to_use == 'image_generator':
+        prompt = parameters.get('prompt', question)
+        image_path = generate_image_with_tool(prompt)
+        yield {"type": "image", "path": image_path}
+    # --- NEW: Handle the file request action ---
+    elif tool_to_use == 'request_file':
+        request_message = parameters.get('request_message', "To proceed, please upload the relevant file.")
+        # Yield a specific dictionary to signal the UI
+        yield {"type": "ui_message", "content": request_message}
+        
+        # Write memory of the action
+        memory_content = f"Following a CORE plan, I generated an image based on the prompt: '{prompt}'."
+        write_novel_thought_to_vector_memory(vectorstore, f"Memory of generating image: {prompt}", memory_content, "generation_log")
+
+    else: # Default to text_rag
+        # We can now pass the deeper analysis from the CORE plan into the RAG process
+        # (This is a future enhancement, but the hook is now here)
+        yield from process_text_with_rag(vectorstore, question, conversation_history, current_scope, llm_model_name)    """
     Analyzes context, applies filtering, streams response, and logs.
     """
     # --- NEW: Initialize LLM based on the selected model ---
