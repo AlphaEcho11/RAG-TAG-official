@@ -3,12 +3,15 @@ import mimetypes
 import os
 import base64
 import requests
+import time
+import uuid
 from PIL import Image
 import pytesseract
 import fitz  # PyMuPDF
 import docx2txt
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_core.messages import HumanMessage
 
-# Import the memory-writing function from the main agent logic
 from .agent_logic import write_novel_thought_to_vector_memory
 
 def encode_image(image_path):
@@ -16,91 +19,83 @@ def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
-def handle_vision_input(image_path, text_query, vectorstore, llm_config):
+def handle_vision_input(image_paths: list, text_query: str, vectorstore, llm_config, llm):
     """
-    Sends an image to a multimodal LLM, gets an analysis, and then writes a
-    text-based memory of the interaction to the vector store.
+    Handles single or multiple vision inputs by building a bundled prompt
+    and using the correct, pre-initialized LLM client.
     """
-    print(f"--- [Omni-Loader] Handling vision input for: {os.path.basename(image_path)} ---")
-    
+    print(f"--- [Omni-Loader] Handling vision input for {len(image_paths)} image(s). ---")
     try:
-        base64_image = encode_image(image_path)
-        
-        headers = {"Content-Type": "application/json"}
-        payload = {
-            "model": llm_config.get("model_name", "llava"), # Default to a common local model name
-            "messages": [
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": text_query},
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
-                    ]
-                }
-            ],
-            "max_tokens": 1024
-        }
-        
-        response = requests.post(f"{llm_config['base_url']}/chat/completions", headers=headers, json=payload, timeout=60)
-        response.raise_for_status()
-        
-        vision_response = response.json()['choices'][0]['message']['content']
-        
-        # Create and write the memory packet
-        memory_content = f"The user uploaded an image ({os.path.basename(image_path)}) with the query: '{text_query}'. My analysis was: {vision_response}"
-        print("--- [Omni-Loader] Writing vision interaction to vector memory... ---")
-        write_novel_thought_to_vector_memory(vectorstore, f"Memory of analyzing image {os.path.basename(image_path)}", memory_content, "vision_log")
-        
+        content_parts = [{"type": "text", "text": text_query}]
+        image_basenames = [os.path.basename(p) for p in image_paths]
+        for image_path in image_paths:
+            base64_image = encode_image(image_path)
+            content_parts.append({"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}})
+
+        vision_response = ""
+        if llm_config["model_provider"] == "google":
+            print("--- [Omni-Loader] Using Google Gemini client for multi-image vision ---")
+            msg = llm.invoke([HumanMessage(content=content_parts)])
+            print("--- [Omni-Loader] Received response from Google API. ---")
+            vision_response = msg.content
+        else: # Local / OpenAI-compatible
+            print("--- [Omni-Loader] Using local/OpenAI client for multi-image vision ---")
+            headers = {"Content-Type": "application/json"}
+            payload = {"model": llm_config.get("model_name"), "messages": [{"role": "user", "content": content_parts}]}
+            response = requests.post(f"{llm_config['base_url']}/chat/completions", headers=headers, json=payload, timeout=120)
+            response.raise_for_status()
+            vision_response = response.json()['choices'][0]['message']['content']
+
+        # Check if the API returned an empty response, which can indicate content filtering.
+        if not vision_response or not vision_response.strip():
+            print("--- [Omni-Loader] WARNING: The API returned an empty response. ---")
+            return "**Error:** The remote API returned an empty response. This could be due to the content of the prompt or images triggering the provider's safety filters. Please try different images or a different query."
+
+        memory_content = f"The user uploaded {len(image_paths)} images ({', '.join(image_basenames)}) with the query: '{text_query}'. My analysis was: {vision_response}"
+        write_novel_thought_to_vector_memory(vectorstore, f"Memory of analyzing images: {', '.join(image_basenames)}", memory_content, "vision_log")
         return vision_response
-        
-    except requests.exceptions.RequestException as e:
-        error_msg = f"Network Error: Could not connect to the vision model at {llm_config.get('base_url', 'the specified endpoint')}. Please ensure the service is running."
-        print(f"--- [Omni-Loader] ERROR: {error_msg} ---")
-        return f"**Error:** {error_msg}"
     except Exception as e:
-        error_msg = f"An unexpected error occurred while analyzing the image: {e}"
+        error_msg = f"An unexpected error occurred while analyzing the image(s): {e}"
         print(f"--- [Omni-Loader] ERROR: {error_msg} ---")
         return f"**Error:** {error_msg}"
 
 def handle_document_input(file_path, vectorstore):
     """
-    Extracts text from a document, writes it to vector memory, and returns a confirmation.
+    Extracts, chunks, and memorizes text from a document for RAG.
     """
-    print(f"--- [Omni-Loader] Handling document input for: {os.path.basename(file_path)} ---")
-    
+    print(f"--- [Omni-Loader] Starting document processing for: {os.path.basename(file_path)} ---")
     try:
         mime_type, _ = mimetypes.guess_type(file_path)
-        extracted_text = extract_text_from_document(file_path, mime_type)
+        full_text = extract_text_from_document(file_path, mime_type)
+        if not full_text or not full_text.strip():
+            return f"**Notice:** Could not extract readable text from **{os.path.basename(file_path)}**."
 
-        if not extracted_text or not extracted_text.strip():
-            return f"**Notice:** Could not extract any readable text from **{os.path.basename(file_path)}**."
-            
-        print(f"--- [Omni-Loader] Extracted {len(extracted_text)} characters. Writing to memory... ---")
-        write_novel_thought_to_vector_memory(
-            vectorstore,
-            query=f"Content of document: {os.path.basename(file_path)}",
-            response=extracted_text,
-            scope="document_ingest"
-        )
-        return f"I have successfully read and memorized the document: **{os.path.basename(file_path)}**."
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        chunks = text_splitter.split_text(full_text)
         
+        metadatas = [{"source": os.path.basename(file_path), "scope": "document_ingest"} for _ in chunks]
+        
+        vectorstore.add_texts(texts=chunks, metadatas=metadatas)
+        print(f"--- [Omni-Loader] Wrote {len(chunks)} chunks to vector memory. ---")
+        return f"Successfully read and memorized {len(chunks)} sections from **{os.path.basename(file_path)}**."
     except Exception as e:
-        error_msg = f"An unexpected error occurred while processing the document. It might be corrupted or in an unsupported format. (Details: {e})"
+        error_msg = f"An unexpected error occurred while processing the document. (Details: {e})"
         print(f"--- [Omni-Loader] ERROR: {error_msg} ---")
         return f"**Error:** {error_msg}"
 
 def extract_text_from_document(file_path, mime_type):
-    """Extracts text from various document types, with a fallback to OCR for PDFs."""
+    """Extracts text with detailed logging, including OCR fallback for PDFs."""
     if mime_type == 'application/pdf':
         try:
+            print(f"--- [Text Extractor] Attempting direct text extraction from PDF: {os.path.basename(file_path)} ---")
             doc = fitz.open(file_path)
             text = "".join(page.get_text() for page in doc).strip()
             if len(text) < 100:
-                print("--- [Text Extractor] Low text in PDF, trying OCR fallback. ---")
+                print("--- [Text Extractor] Low text content detected. Falling back to OCR... ---")
                 return pytesseract.image_to_string(Image.open(file_path))
             return text
         except Exception as e:
-            print(f"--- [Text Extractor] PDF extraction failed ({e}), falling back to OCR. ---")
+            print(f"--- [Text Extractor] Direct extraction failed ({e}). Falling back to OCR... ---")
             return pytesseract.image_to_string(Image.open(file_path))
     elif mime_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
         return docx2txt.process(file_path)
@@ -109,17 +104,13 @@ def extract_text_from_document(file_path, mime_type):
             return f.read()
     return ""
 
-def process_input(file_path, text_query, vectorstore, llm_config):
-    """
-    Acts as the main smart router for all incoming files.
-    """
+def process_input(file_path, text_query, vectorstore, llm_config, llm):
+    """Acts as the main smart router for a single incoming file."""
     mime_type, _ = mimetypes.guess_type(file_path)
-    
     if mime_type and mime_type.startswith('image/'):
-        return handle_vision_input(file_path, text_query, vectorstore, llm_config)
+        # Note: The UI layer now bundles multiple images into a single call to handle_vision_input
+        return handle_vision_input([file_path], text_query, vectorstore, llm_config, llm)
     elif mime_type in ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain']:
         return handle_document_input(file_path, vectorstore)
     else:
-        unsupported_msg = f"Sorry, the file type '{mime_type}' is not supported yet."
-        print(f"--- [Omni-Loader] {unsupported_msg} ---")
-        return unsupported_msg
+        return f"Sorry, the file type '{mime_type}' is not supported yet."
