@@ -2,6 +2,12 @@
 import os
 from dotenv import load_dotenv
 
+# --- Feature Flags ---
+# Set to False to run the agent in a lightweight, text-only mode.
+OMNIMODAL_FEATURES_ENABLED = True
+
+# --- Core Paths ---
+
 # Load environment variables from a .env file
 load_dotenv()
 

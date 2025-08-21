@@ -32,7 +32,15 @@ def update_model(new_model):
     app_state["llm_model"] = new_model
     return gr.Info(f"Switched session LLM to: {new_model}")
 
-# --- CORE CHAT INTERFACE LOGIC (REFACTORED FOR 'MESSAGES' FORMAT) ---
+# This function is only needed if omnimodal features are on
+if config.OMNIMODAL_FEATURES_ENABLED:
+    def update_file_previews(files):
+        if not files:
+            return gr.Gallery(visible=False)
+        image_previews = [f.name for f in files if mimetypes.guess_type(f.name)[0] and mimetypes.guess_type(f.name)[0].startswith("image/")]
+        return gr.Gallery(value=image_previews, visible=bool(image_previews))
+
+# --- CORE CHAT INTERFACE LOGIC ---
 def multimodal_chat_interface(text_message, files, history):
     new_history = list(history) if history else []
     
@@ -100,13 +108,25 @@ with gr.Blocks(theme='default') as demo:
     gr.Markdown("# RAG-TAG Agent Console (Omnimodal)")
     with gr.Row():
         with gr.Column(scale=2):
-            # --- THIS IS THE FIX for the warning ---
             chatbot = gr.Chatbot(
                 label="Chat",
                 height=600,
                 bubble_full_width=False,
                 render_markdown=True,
-                type="messages" # Set the type to 'messages'
+                type="messages" 
+
+            # --- CONDITIONAL UI BLOCK ---
+            if config.OMNIMODAL_FEATURES_ENABLED:
+                preview_gallery = gr.Gallery(label="File Previews", visible=False, columns=4, height=120)
+                file_uploader = gr.File(label="Upload Files", file_count="multiple", type="filepath")
+                placeholder_text = "Enter text to accompany files or send a message"
+            else:
+                # If omnimodal is off, these components don't exist
+                preview_gallery = None
+                file_uploader = None
+                placeholder_text = "Enter your message"
+            # --- END CONDITIONAL UI BLOCK ---
+                
             )
             file_uploader = gr.File(label="Upload Files", file_count="multiple", type="filepath")
             with gr.Row():
@@ -119,14 +139,34 @@ with gr.Blocks(theme='default') as demo:
                 journal_output = gr.Code(label="Live Feed", language="json", interactive=False)
             status_update = gr.Textbox(label="Status", visible=False)
 
-    # --- EVENT LISTENERS ---
-    outputs_to_update = [chatbot, msg_textbox, file_uploader]
+    # Prepare inputs and outputs based on the feature flag
+    if config.OMNIMODAL_FEATURES_ENABLED:
+        submit_inputs = [msg_textbox, file_uploader, chatbot]
+        submit_outputs = [chatbot, msg_textbox, file_uploader, preview_gallery]
+    else:
+        submit_inputs = [msg_textbox, chatbot]
+        submit_outputs = [chatbot, msg_textbox]
 
-    send_button.click(multimodal_chat_interface, [msg_textbox, file_uploader, chatbot], outputs_to_update)
-    msg_textbox.submit(multimodal_chat_interface, [msg_textbox, file_uploader, chatbot], outputs_to_update)
+    send_button.click(multimodal_chat_interface, submit_inputs, submit_outputs)
+    msg_textbox.submit(multimodal_chat_interface, submit_inputs, submit_outputs)
+    
+    if config.OMNIMODAL_FEATURES_ENABLED:
+        file_uploader.change(fn=update_file_previews, inputs=file_uploader, outputs=preview_gallery)
     
     chatbot.change(fn=update_journal_display, inputs=None, outputs=journal_output)
     model_dropdown.change(update_model, inputs=model_dropdown, outputs=status_update)
+
+# For completeness, the full chat function is needed here again
+def multimodal_chat_interface(text_message, files, history):
+    # This logic now needs to handle the case where 'files' is not provided
+    if not config.OMNIMODAL_FEATURES_ENABLED:
+        files = None # Ensure files is None if the feature is off
+
+    # Return signature must match the number of outputs
+    if config.OMNIMODAL_FEATURES_ENABLED:
+        return new_history, gr.update(value=""), gr.update(value=None), gr.Gallery(visible=False)
+    else:
+        return new_history, gr.update(value="")
 
 if __name__ == "__main__":
     demo.launch(pwa=True)

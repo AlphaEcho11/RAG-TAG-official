@@ -1,0 +1,8 @@
+# Core Dependencies for RAG-TAG (Text-Only Mode)
+langchain
+langchain-openai
+langchain-chroma
+langchain-huggingface
+sentence-transformers
+gradio
+python-dotenv

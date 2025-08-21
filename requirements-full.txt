@@ -1,0 +1,19 @@
+# Full Dependencies for RAG-TAG (Omnimodal Mode)
+
+# --- Core Libraries ---
+langchain
+langchain-openai
+langchain-chroma
+langchain-huggingface
+sentence-transformers
+gradio
+python-dotenv
+
+# --- Omnimodal & Cloud Libraries ---
+langchain-google-genai
+langchain-anthropic
+PyMuPDF
+pytesseract
+Pillow
+docx2txt
+requests

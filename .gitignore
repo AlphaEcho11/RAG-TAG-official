@@ -22,6 +22,7 @@ cognitive_journal.json
 # Backup Files
 *.old
 ui/BEST-app.py
+requirements.txt
 
 # IDE / OS specific
 .vscode/
